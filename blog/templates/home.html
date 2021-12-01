@@ -1,0 +1,35 @@
+{% extends 'base.html'%} {% block title %}IT Tamil{% endblock %} {% block body %} {% include 'nav.html' %}
+<!-- Page Content-->
+<div class="container">
+    <!-- Jumbotron Header-->
+    <header class="jumbotron my-4">
+        <h1 class="display-3">My Blog</h1>
+        <p class="lead">Hey this blog contains lots of tech and programming related contents.</p>
+        <a class="btn btn-primary btn-lg" href="#!">Contact</a>
+    </header>
+
+<object data="YourFile.pdf" type="application/x-pdf" title="SamplePdf" width="500" height="720">
+    <a href="media/thumbnail/Resume.pdf">shree</a> 
+</object>
+    <!-- Page Features-->
+    <div class="row text-center">
+        {% for post in blogposts %}
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="{{post.thumbnail.url}}" />
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="text-muted">{{post.created_on}} - {{post.author}}
+                    </p>
+                    <p class="card-text">{{post.content|slice:100}}.</p>
+                </div>
+
+                <div class="card-footer"><a class="btn btn-primary" href="{{post.slug}}">Find Out More!</a></div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- Footer-->
+{% include 'footer.html' %} {% endblock %}

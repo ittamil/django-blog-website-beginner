@@ -1,0 +1,39 @@
+{% extends 'base.html'%} {% load crispy_forms_tags %} {% block title %}{{postdetail.title}}{% endblock %} {% block body %} {% include 'nav.html' %}
+<!-- Page Content-->
+<br/>
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h1>{{postdetail.title}}</h1> <small class="text-muted">{{postdetail.created_on}}</small>
+            <br/>
+            <img style="height: fit-content;width:100%" class="text-center" src="{{postdetail.thumbnail.url}}">
+            <p>{{postdetail.content}}</p>
+        </div>
+        <div class="card-footer">
+            {{postdetail.author}}
+        </div>
+    </div>
+    <br/>
+    <div class="card">
+        <div class="card-body">
+            {% for comment in comments %}
+            <b>{{comment.name}} - <small class="text-muted">{{comment.created_on}}</small></b>
+            <p> - {{comment.content}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <br/>
+    <div class="card">
+        <b><h3 class="text-center">Leave your comment </h3></b>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %} {{commentform |crispy}}
+                <input type="submit" value="comment" class="btn btn-danger" />
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+<br/> {% include 'footer.html' %} {% endblock%}

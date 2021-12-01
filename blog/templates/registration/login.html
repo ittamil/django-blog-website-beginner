@@ -1,0 +1,10 @@
+{% extends 'base.html'%} {% load crispy_forms_tags %} {% block title %}Login{% endblock %} {% block body %} {% include 'nav.html' %}
+<br/>
+<div class="container">
+    <h2>Login </h2>
+    <form method="POST" class="uniForm">
+        {% csrf_token %} {{form | crispy}}
+        <input type="submit" />
+    </form>
+</div>
+<br/> {% include 'footer.html' %} {% endblock%}
